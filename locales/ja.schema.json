@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "settings_schema": {
     "colors": {
@@ -364,7 +373,7 @@
           "label": "ホバー効果",
           "info": "カードとボタンに影響を与えます。",
           "options__3": {
-            "label": "3Dリフト"
+            "label": "3D表示"
           }
         }
       }

@@ -1,0 +1,199 @@
+<!-- Swiper styles -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<div class="product-slider-container">
+  <div class="swiper product-slider">
+    <div class="swiper-wrapper">
+      {% for product in collections[section.settings.collection].products %}
+        <div class="swiper-slide">
+          <a href="{{ product.url }}" class="product-link">
+            <img
+              src="{{ product.featured_image | image_url: width: 800 }}"
+              alt="{{ product.title }}"
+              class="product-image"
+              loading="lazy"
+            >
+            <h3 class="product-title product-title--{{ section.settings.product_title_size }}">{{ product.title }}</h3>
+            <p class="product-price">{{ product.price | money }}</p>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if section.settings.show_navigation %}
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    {% endif %}
+
+    {% if section.settings.show_pagination %}
+      <div class="swiper-pagination"></div>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+  /* Example of styling based on color scheme */
+  .product-slider-section {
+    --text-color: {{ settings.colors_product_slider_text }}; /* Assuming you have these */
+    --background-color: {{ settings.colors_product_slider_background }};
+  }
+
+  .product-title--small {
+    font-size: 1rem;
+  }
+
+  .product-title--medium {
+    font-size: 1.2rem;
+  }
+
+  .product-title--large {
+    font-size: 1.4rem;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    new Swiper('.product-slider', {
+      slidesPerView: {{ section.settings.slides_per_view_mobile }},
+      spaceBetween: {{ section.settings.space_between }},
+      loop: {{ section.settings.loop }},
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+        enabled: {{ section.settings.show_pagination }}
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+        enabled: {{ section.settings.show_navigation }}
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: {{ section.settings.slides_per_view_tablet }},
+          spaceBetween: {{ section.settings.space_between }},
+        },
+        1024: {
+          slidesPerView: {{ section.settings.slides_per_view_desktop }},
+          spaceBetween: {{ section.settings.space_between }},
+        },
+      },
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Product Slider",
+  "tag": "section",
+  "class": "product-slider-section",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "t:sections.product-slider.settings.collection.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.product-slider.settings.header_slider.content"
+    },
+    {
+      "type": "range",
+      "id": "slides_per_view_desktop",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 4,
+      "label": "t:sections.product-slider.settings.slides_per_view_desktop.label",
+      "info": "t:sections.product-slider.settings.slides_per_view_desktop.info"
+    },
+    {
+      "type": "range",
+      "id": "slides_per_view_tablet",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 2,
+      "label": "t:sections.product-slider.settings.slides_per_view_tablet.label",
+      "info": "t:sections.product-slider.settings.slides_per_view_tablet.info"
+    },
+    {
+      "type": "range",
+      "id": "slides_per_view_mobile",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 1,
+      "label": "t:sections.product-slider.settings.slides_per_view_mobile.label",
+      "info": "t:sections.product-slider.settings.slides_per_view_mobile.info"
+    },
+    {
+      "type": "range",
+      "id": "space_between",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "t:sections.product-slider.settings.space_between.label",
+      "default": 10,
+      "info": "t:sections.product-slider.settings.space_between.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "loop",
+      "label": "t:sections.product-slider.settings.loop.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pagination",
+      "label": "t:sections.product-slider.settings.show_pagination.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_navigation",
+      "label": "t:sections.product-slider.settings.show_navigation.label",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "t:sections.product-slider.settings.header_design.content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "select",
+      "id": "product_title_size",
+      "options": [
+        {
+          "value": "small",
+          "label": "t:sections.product-slider.settings.product_title_size.options__1.label"
+        },
+        {
+          "value": "medium",
+          "label": "t:sections.product-slider.settings.product_title_size.options__2.label"
+        },
+        {
+          "value": "large",
+          "label": "t:sections.product-slider.settings.product_title_size.options__3.label"
+        }
+      ],
+      "default": "medium",
+      "label": "t:sections.product-slider.settings.product_title_size.label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Slider",
+      "category": "Products"
+    }
+  ]
+}
+{% endschema %}
