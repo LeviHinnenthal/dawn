@@ -1,0 +1,145 @@
+/* Define CSS Variables */
+:root {
+  --blue: #004f9f;
+  --orange: hsl(13, 100%, 54%);
+  --grey-medium: #c8c8c8;
+  --base-font-size: 16px;
+  --medium-font-size: 26px;
+  --medium--font-weight: 600;
+}
+
+/* General Slider Container */
+.product-slider-container {
+  background-color: #f0f8ff;
+  padding: 20px;
+}
+
+/* Slider */
+.product-slider {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Swiper Slide */
+.swiper-slide {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.swiper-slide:hover,
+.swiper-slide:focus {
+  transform: translateY(-5px);
+}
+
+/* Swiper Navigation Arrows */
+.title-and-arrows-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.arrow {
+  width: 48px;
+  height: 48px;
+  border-radius: 2px;
+  border: 1px solid var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrow-right img {
+  transform: rotate(180deg);
+}
+
+/* Product Image */
+.product-image {
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 1/1;
+  margin-bottom: 10px;
+}
+
+/* Product Title */
+.product-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+/* Product Price */
+.product-price {
+  font-size: 1rem;
+  color: var(--orange); /* Use --orange variable */
+}
+
+/* Swiper Navigation Buttons */
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--blue); /* Use --blue variable */
+  background-color: #fff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+  border: 2px solid var(--blue);
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: #f0f0f0;
+}
+
+/* Positioning Navigation Buttons */
+.swiper-button-next {
+  right: 10px;
+}
+
+.swiper-button-prev {
+  left: 10px;
+}
+
+/* Swiper Pagination */
+.swiper-pagination-bullet {
+  background-color: #ccc;
+  opacity: 0.8;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: var(--blue); /* Use --blue variable */
+}
+
+/* Custom Link Styling (Optional, but recommended for better UX) */
+.product-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* Styling for Sale Prices */
+.sale-price {
+  color: var(--orange); /* Use --orange variable */
+}
+
+.product-price--old {
+  text-decoration: line-through;
+  color: var(--grey-medium);
+}
+
+.product-price--current.sale-price {
+  color: var(--orange);
+}
