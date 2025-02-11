@@ -1,81 +1,107 @@
 {{ 'section-product-slider.css' | asset_url | stylesheet_tag }}
-
+<script src="{{ 'product-slider.js' | asset_url }}" type="text/javascript"></script>
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 <div class="product-slider-container">
   <div class="title-and-arrows-container">
-    <h3 class="section-title">{{ section.settings.collection | collection_name }}</h3>
+    <h2 class="section-title">{{ section.settings.collection | collection_name }}</h2>
     <div class="arrows-container">
       <div class="arrow arrow-left">
-        <img src="/leftArrow.png" alt="Left arrow">
+        <img src="{{ 'arrowLeft.png' | asset_url }}" alt="Left arrow">
       </div>
+
       <div class="arrow arrow-right">
-        <img src="/leftArrow.png" alt="Left arrow">
+        <img src="{{ 'arrowLeft.png' | asset_url }}" alt="Left arrow">
       </div>
     </div>
   </div>
   <div class="swiper product-slider">
     <div class="swiper-wrapper">
       {% for product in collections[section.settings.collection].products %}
-        <div class="swiper-slide">
-          <a href="{{ product.url }}" class="product-link">
+        <article class="swiper-slide">
+          <a href="{{ product.url }}" class="product-link" title="Ver más sobre {{ product.title }}">
             <img
               src="{{ product.featured_image | image_url: width: 800 }}"
-              alt="{{ product.title }}"
+              alt="{{ product.title }} - Buy now"
               class="product-image"
-              loading="lazy"
             >
-            <h3 class="product-title product-title--{{ section.settings.product_title_size }}">{{ product.title }}</h3>
+            <div class="starsContainer">
+              <img
+                src="{{ 'ratingStars.png' | asset_url }}"
+                alt="Valoración de {{ product.title }}"
+                class="rating-stars"
+              >
+            </div>
+            <h3 class="product-title product-title--{{ section.settings.product_title_size }}">
+              {{ product.title }}
+            </h3>
 
-            <p class="product-price">
-              {% if product.compare_at_price > product.price %}
-                <span class="product-price--current sale-price">{{ product.price | money }}</span>
-                <span class="product-price--old">{{ product.compare_at_price | money }}</span>
+            <div class="product-price">
+              {% if product.variants.size > 1 and product.compare_at_price > product.price %}
+                <span class="abLabel sale-price">ab</span>
+                <div class="prices-container">
+                  <span class="product-price--current sale-price">{{ product.price | money }}</span>
+                  <span class="product-price--old">{{ product.compare_at_price | money }}</span>
+                </div>
+              {% elsif product.variants.size > 1 %}
+                <span class="abLabel">ab</span> {{ product.price | money }}
+              {% elsif product.compare_at_price > product.price %}
+                <div class="prices-container">
+                  <span class="product-price--current sale-price">{{ product.price | money }}</span>
+                  <span class="product-price--old">{{ product.compare_at_price | money }}</span>
+                </div>
               {% else %}
-                Ab {{ product.price | money }}
+                {{ product.price | money }}
               {% endif %}
-            </p>
+            </div>
           </a>
-        </div>
+        </article>
       {% endfor %}
     </div>
 
-    {% if section.settings.show_pagination %}
-      <div class="swiper-pagination"></div>
-    {% endif %}
+    <!-- Paginación Swiper -->
+    <div class="swiper-pagination"></div>
   </div>
 </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    new Swiper('.product-slider', {
-      slidesPerView: 2,
-      spaceBetween: 20,
-      loop: true,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-        enabled: true,
-      },
-      navigation: {
-        nextEl: '.arrow-right',
-        prevEl: '.arrow-left',
-        enabled: false,
-      },
-      breakpoints: {
-        768: {
-          slidesPerView: 4,
+{% comment %}
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      new Swiper('.product-slider', {
+        slidesPerView: 1.6,
+        spaceBetween: 20,
+        slidesOffsetAfter: 20,
+        slidesOffsetBefore: 20,
+        loop: true,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+          enabled: true,
+          type: 'bullets',
         },
-        1024: {
-          slidesPerView: 5,
-          pagination: false,
-          navigation: true,
+        breakpoints: {
+          768: {
+            slidesPerView: 3.5,
+            slidesOffsetAfter: 30,
+            slidesOffsetBefore: 30,
+          },
+          1024: {
+            slidesPerView: 4.4,
+            pagination: false,
+            navigation: {
+              nextEl: '.arrow-right',
+              prevEl: '.arrow-left',
+              enabled: true,
+              slidesOffsetAfter: 20,
+              slidesOffsetBefore: 20,
+            },
+          },
         },
-      },
+      });
     });
-  });
-</script>
+  </script>
+{% endcomment %}
 
 {% schema %}
 {

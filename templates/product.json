@@ -34,6 +34,21 @@
             "swatch_shape": "circle"
           }
         },
+        "loox_reviews_loox_rating_pYdR8F": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-rating/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "contentSize": 16,
+            "pattern": "",
+            "hideText": false,
+            "alignment": "",
+            "layout": "",
+            "textColor": "",
+            "starColor": "",
+            "showAllReviews": false,
+            "looxOpenFloatingWidget": false,
+            "emptyRatingWidget": false
+          }
+        },
         "quantity_selector": {
           "type": "quantity_selector",
           "settings": {}
@@ -61,6 +76,7 @@
         "title",
         "price",
         "variant_picker",
+        "loox_reviews_loox_rating_pYdR8F",
         "quantity_selector",
         "buy_buttons",
         "description",

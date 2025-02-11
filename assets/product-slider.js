@@ -1,29 +1,47 @@
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    new Swiper('.product-slider', {
-      slidesPerView: {{ section.settings.slides_per_view_mobile }},
-      spaceBetween: {{ section.settings.space_between }},
-      loop: {{ section.settings.loop }},
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-        enabled: {{ section.settings.show_pagination }}
+document.addEventListener('DOMContentLoaded', function () {
+  new Swiper('.product-slider', {
+    slidesPerView: 1.6,
+    spaceBetween: 24,
+    slidesOffsetAfter: 24,
+    slidesOffsetBefore: 24,
+    loop: true,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+      enabled: true,
+      type: 'bullets',
+    },
+    breakpoints: {
+      768: {
+        slidesPerView: 3.5,
+        slidesOffsetAfter: 48,
+        slidesOffsetBefore: 48,
+        spaceBetween: 32,
       },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-        enabled: {{ section.settings.show_navigation }}
-      },
-      breakpoints: {
-        640: {
-          slidesPerView: {{ section.settings.slides_per_view_tablet }},
-          spaceBetween: {{ section.settings.space_between }},
+      1024: {
+        slidesPerView: 4.6,
+        pagination: false,
+        navigation: {
+          nextEl: '.arrow-right',
+          prevEl: '.arrow-left',
+          enabled: true,
+          slidesOffsetAfter: 20,
+          slidesOffsetBefore: 20,
         },
-        1024: {
-          slidesPerView: {{ section.settings.slides_per_view_desktop }},
-          spaceBetween: {{ section.settings.space_between }},
-        },
       },
-    });
+    },
   });
-</script>
+
+  function truncateText(selector, limit) {
+    document.querySelectorAll(selector).forEach((el) => {
+      let text = el.textContent.trim();
+      if (text.length > limit) {
+        el.textContent = text.substring(0, limit) + '...';
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    truncateText('.product-title', 97);
+  });
+});

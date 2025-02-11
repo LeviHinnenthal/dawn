@@ -11,56 +11,24 @@
   "sections": {
     "image_banner": {
       "type": "image-banner",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
-          }
-        },
-        "button": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "button"
-      ],
       "settings": {
+        "image": "shopify://shop_images/Captura_de_pantalla_2025-02-11_a_las_0.31.52.png",
         "image_overlay_opacity": 40,
-        "image_height": "large",
+        "image_height": "adapt",
         "desktop_content_position": "bottom-center",
         "show_text_box": false,
-        "image_behavior": "none",
         "desktop_content_alignment": "center",
         "color_scheme": "scheme-3",
+        "image_behavior": "none",
         "mobile_content_alignment": "center",
         "stack_images_on_mobile": false,
         "show_text_below": false
       }
     },
     "product_slider": {
-      "type": "product-slider",  // Changed to "product-slider"
+      "type": "product-slider",
       "settings": {
-        "collection": "all", // Set your desired default collection.  Important!
-        "slides_per_view_desktop": 4, // Added a default
-        "slides_per_view_tablet": 2, // Added a default
-        "slides_per_view_mobile": 1, // Added a default
-        "space_between": 10, //Added a default
-        "loop": true, // Added a default
-        "show_pagination": true, //Added a default
-        "show_navigation": true, //Added a default
-        "product_title_size": "medium", // Added a default
-        "color_scheme": "scheme-1"
+        "collection": "bestsellers"
       }
     }
   },
